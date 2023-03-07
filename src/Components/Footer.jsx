@@ -17,10 +17,12 @@ const Footer = () => {
                 <span>SERVICES</span>
               </div>
               <div className="footer-link">
-                <Link>Website Development</Link>
+                <Link to="/services/web_design">Website Development</Link>
               </div>
               <div className="footer-link">
-                <Link>M-Pesa Intergration</Link>
+                <Link to="/services/mpesa_intergration">
+                  M-Pesa Intergration
+                </Link>
               </div>
               <div className="footer-link">
                 <Link>Mobile App Development</Link>
@@ -34,16 +36,18 @@ const Footer = () => {
                 <span>QUICK LINKS</span>
               </div>
               <div className="footer-link">
-                <Link>About Us</Link>
+                <Link to="/about_us">About Us</Link>
               </div>
               <div className="footer-link">
                 <Link>Bulky SMS</Link>
               </div>
               <div className="footer-link">
-                <Link>Payment Intergation</Link>
+                <Link to="/services/mpesa_intergration">
+                  Payment Intergation
+                </Link>
               </div>
               <div className="footer-link">
-                <Link>Logo Design</Link>
+                <Link to="/services/logo_design">Logo Design</Link>
               </div>
             </Col>
             <Col md="3">

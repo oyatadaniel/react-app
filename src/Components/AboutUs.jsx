@@ -12,7 +12,12 @@ import {
   faPhone,
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
-import { Whatsapp, Phone, EnvelopeAt, Facebook } from "react-bootstrap-icons";
+import {
+  Whatsapp,
+  TelephoneFill,
+  EnvelopeAt,
+  Facebook,
+} from "react-bootstrap-icons";
 
 const TITLE = "Trademark Developers : About Us";
 const AboutUs = () => {
@@ -40,7 +45,7 @@ const AboutUs = () => {
                     their uniqueness and effectiveness
                   </p>
                   <div className="get-started">
-                    <a href="" className="btn btn-primary">
+                    <a href="/contact_us" className="btn btn-primary">
                       {" "}
                       Get Started
                     </a>
@@ -69,10 +74,10 @@ const AboutUs = () => {
                 <Col md="6">
                   <h3>Our Mission</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nesciunt debitis quasi aperiam, ab consequatur ex optio
-                    odio, cupiditate, assumenda illo libero veritatis dolores
-                    vel! Libero quaerat praesentium ipsum accusantium neque.
+                    Our mission is to provide our clients with the utmost
+                    satisfaction. By doing so, we treat every client's website
+                    with care. We strive for a modern website layout and high
+                    organic search engine rankings.
                   </p>
                 </Col>
                 <Col md="6">
@@ -83,20 +88,23 @@ const AboutUs = () => {
           </Row>
         </Container>
       </div>
-      <div className="contact">
+      <div className="contact-page">
         <Container>
           <Row className="justify-content-center">
             <Col md="10" style={{ textAlign: "center" }}>
               <h3 style={{ textAlign: "center" }}>Have Some Question?</h3>
               <span>Contact Us Here</span>
-              <Row className="justify-content-center">
+              <Row
+                className="justify-content-center"
+                style={{ marginTop: "30px" }}
+              >
                 <Col md="6">
                   <Row>
                     <Col md="6" style={{ textAlign: "center" }}>
                       <div className="cont">
                         <h6>
-                          <Phone style={{ float: "left" }} id="icon" />
-                          079-008-4094
+                          <TelephoneFill style={{ float: "left" }} id="icon" />
+                          079 008 4094
                         </h6>
                       </div>
                     </Col>
@@ -104,7 +112,7 @@ const AboutUs = () => {
                       <div className="cont">
                         <h6>
                           <Whatsapp style={{ float: "left" }} id="icon" />
-                          079-900-9560
+                          079 900 9560
                         </h6>
                       </div>
                     </Col>

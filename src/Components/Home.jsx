@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faPhone } from "@fortawesome/free-solid-svg-icons";
 import web from "../Photos/web-design-icon.svg";
 import system from "../Photos/system.svg";
+import TestiMonialsDetails from "./TestiMonialsDetails";
 import mpesa from "../Photos/mpesa.svg";
 import whatsap from "../Photos/whatsap.svg";
 import call from "../Photos/call.svg";
@@ -29,10 +30,12 @@ import C3 from "../Photos/background1.jpg";
 import WOW from "wowjs";
 import "bulma/css/bulma.min.css";
 import { Helmet } from "react-helmet";
+import LoadingBar from "react-top-loading-bar";
 
 const TITLE = "Trademark Developers : Home";
 
 const Home = () => {
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -44,6 +47,11 @@ const Home = () => {
         <title>{TITLE}</title>
       </Helmet>
       <NavbarNav />
+      <LoadingBar
+        color="red"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <Container id="container">
         <Row>
           <Col md="6">
@@ -62,7 +70,11 @@ const Home = () => {
                 Modern Technologies for <strong>High Performance.</strong>
               </p>
               <div className="learn">
-                <Link className="btn">
+                <Link
+                  className="btn"
+                  onClick={() => setProgress(100)}
+                  to="/contact_us"
+                >
                   Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
                 </Link>
               </div>
@@ -109,12 +121,12 @@ const Home = () => {
                 {" "}
                 Get to reach more Customers Based on Products Or Services you
                 Offer by Advertising them through your Website.
-                <div className="learn">
-                  <Link className="btn">
-                    Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
-                  </Link>
-                </div>
               </p>
+              <div className="learn">
+                <Link to="/contact_us" className="btn">
+                  Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
+                </Link>
+              </div>
             </Col>
           </Row>
         </Container>
@@ -134,7 +146,7 @@ const Home = () => {
                 For Website Design and Development You need Us so that to
                 achieve a responsive and efficiency Website.
                 <div className="learn">
-                  <Link className="btn">
+                  <Link to="/contact_us" className="btn">
                     Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
                   </Link>
                 </div>
@@ -153,7 +165,7 @@ const Home = () => {
                 Even small Business need a Well Inventory System to Manage and
                 Keep Track of your Stock, Sales and Orders from your Clients.
                 <div className="learn">
-                  <Link className="btn">
+                  <Link to="/contact_us" className="btn">
                     Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
                   </Link>
                 </div>
@@ -172,7 +184,7 @@ const Home = () => {
                 Engance payments from Client and Suppliers by Intergrating Mpesa
                 as a payment method into your Website
                 <div className="learn">
-                  <Link className="btn">
+                  <Link to="/contact_us" className="btn">
                     Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
                   </Link>
                 </div>

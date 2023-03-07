@@ -12,7 +12,7 @@ import {
   Col,
 } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 const NavbarNav = (props) => {
@@ -68,34 +68,58 @@ const NavbarNav = (props) => {
   return (
     <>
       <Navbar expand="lg" className="navbar fixed-top">
-        <Container class>
+        <Container>
           <Navbar.Brand
-            href="/"
+            href="/home"
             style={{ fontSize: "15px", fontWeight: "bold", color: "#fff" }}
           >
             <img src={logo} alt="logo" className="logo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-control="basic-navbar-nav" />
+          <Navbar.Toggle />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="/" className="myactive">
+              <Nav.Link as={NavLink} to="/home" activeclassname="active">
                 Home
               </Nav.Link>
-              <NavDropdown title="Services" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
+              <NavDropdown
+                style={{ textDecoration: "none" }}
+                to="/services"
+                activeclassname="active"
+                title="Services"
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item
+                  as={NavLink}
+                  to="/services/web_design"
+                  activeclassname="active"
+                >
                   Web Design
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item
+                  as={NavLink}
+                  to="/services/mpesa_intergration"
+                  activeclassname="active"
+                >
                   Mpesa Intergration
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.1">
-                  Information System Development
+                <NavDropdown.Item
+                  as={NavLink}
+                  to="/services/invendory_management_system"
+                  activeclassname="active"
+                >
+                  Invendory System Development
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.1">
+                <NavDropdown.Item
+                  as={NavLink}
+                  to="/services/logo_design"
+                  activeclassname="active"
+                >
                   Logo Design & Graphics
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/about_us">About</Nav.Link>
+              <Nav.Link as={NavLink} to="/about_us" activeclassname="active">
+                About
+              </Nav.Link>
               <Nav.Link onClick={handleShow}>Request Service</Nav.Link>
             </Nav>
           </Navbar.Collapse>

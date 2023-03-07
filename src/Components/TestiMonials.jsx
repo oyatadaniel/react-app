@@ -64,7 +64,7 @@ const TestiMonials = () => {
     <section id="testimonial" className="testimonials pt-70 pb-70">
       <div className="container mt-5">
         <div className="text-center ">
-          <h1 h1 id="h1" style={{ textAlign: "center" }}>
+          <h1 id="h1" style={{ textAlign: "center" }}>
             <span style={{ fontWeight: "normal" }}> What Our</span> Clients{" "}
             <span style={{ fontWeight: "normal" }}>are Saying</span> ?
           </h1>
@@ -97,7 +97,7 @@ const TestiMonials = () => {
                   return (
                     <TestiMonialsDetails
                       testiMonialDetail={testiMonialDetail}
-                      key={testiMonialDetail._key}
+                      key={testiMonialDetail.name}
                     />
                   );
                 })
