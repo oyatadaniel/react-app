@@ -113,7 +113,7 @@ const NavbarNav = (props) => {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link as={NavLink} to="/contact_us" activeclassname="active">
-                About
+                Contact
               </Nav.Link>
               <Nav.Link as={NavLink} to="/about_us" activeclassname="active">
                 About
