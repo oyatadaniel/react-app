@@ -54,11 +54,7 @@ const Footer = () => {
               <div className="footer-heading">
                 <span>SUBSCRIBE</span>
               </div>
-              <FloatingLabel
-                controlId="floatingInput"
-                label="Email Address"
-                className="mb-3"
-              >
+              <FloatingLabel label="Email Address" className="mb-3">
                 <Form.Control type="number" placeholder="name@example.com" />
               </FloatingLabel>
               <input id="message" type="submit" value="Subscribe" />

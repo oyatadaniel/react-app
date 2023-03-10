@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Container,
-  Row,
-  Col,
-  Form,
-  FloatingLabel,
-  Button,
-} from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import Footer from "../Components/Footer";
 import NavbarNav from "../Components/NavbarNav";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import web from "../Photos/web-design-icon.svg";
 import system from "../Photos/system.svg";
-import TestiMonialsDetails from "./TestiMonialsDetails";
 import mpesa from "../Photos/mpesa.svg";
-import whatsap from "../Photos/whatsap.svg";
-import call from "../Photos/call.svg";
-import facebook from "../Photos/facebook.svg";
 import C1 from "../Photos/ci.jpg";
 import ack from "../Photos/ack.jpg";
 import tds from "../Photos/tds.jpg";
@@ -28,14 +16,12 @@ import C2 from "../Photos/pic.png";
 import TestiMonials from "./TestiMonials";
 import C3 from "../Photos/background1.jpg";
 import WOW from "wowjs";
-import "bulma/css/bulma.min.css";
 import { Helmet } from "react-helmet";
-import LoadingBar from "react-top-loading-bar";
+import SocialIcons from "./SocialIcons";
 
 const TITLE = "Trademark Developers : Home";
 
 const Home = () => {
-  const [progress, setProgress] = useState(0);
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -47,11 +33,7 @@ const Home = () => {
         <title>{TITLE}</title>
       </Helmet>
       <NavbarNav />
-      <LoadingBar
-        color="red"
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
+
       <Container id="container">
         <Row>
           <Col md="6">
@@ -70,11 +52,7 @@ const Home = () => {
                 Modern Technologies for <strong>High Performance.</strong>
               </p>
               <div className="learn">
-                <Link
-                  className="btn"
-                  onClick={() => setProgress(100)}
-                  to="/contact_us"
-                >
+                <Link className="btn" to="/contact_us">
                   Learn More <FontAwesomeIcon id="icon" icon={faArrowRight} />
                 </Link>
               </div>
@@ -275,30 +253,7 @@ const Home = () => {
           </Row>
         </Container>
       </div>
-      <div
-        className="project"
-        style={{ marginTop: "30px", marginBottom: "30px" }}
-      >
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="6" style={{ textAlign: "center" }}>
-              <h1 id="h1" style={{ textAlign: "center" }}>
-                <span style={{ fontWeight: "normal" }}>Have a</span> Project{" "}
-                <span style={{ fontWeight: "normal" }}>at Hand?</span>
-              </h1>
-              <h4>Feel Free To Contact Us !</h4>
-              <div
-                className="contact-info"
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <img src={whatsap} alt="" style={{ width: "50px" }} />
-                <img src={call} alt="" style={{ width: "50px" }} />
-                <img src={facebook} alt="" style={{ width: "50px" }} />
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <SocialIcons />
       <Footer />
     </div>
   );

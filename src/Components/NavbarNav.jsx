@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import logo from "../dev-logo.svg";
-import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import axios from "axios";
 import {
   Nav,
   Button,
@@ -15,62 +16,56 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
+const initialState = {
+  name: "",
+  phone: "",
+  email: "",
+  message: "",
+};
 const NavbarNav = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const validate = (values) => {
-    const errors = {};
+  const [state, setState] = useState(initialState);
 
-    if (!values.email) {
-      errors.email = "* Email is Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
-    }
+  const { name, phone, email, message } = state;
 
-    if (!values.name) {
-      errors.name = "*  Name is Required";
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !phone || !message) {
+      toast.error("Can not Submit Blank Field");
+    } else {
+      axios
+        .post("http://localhost:3030/sendMessage", {
+          name,
+          phone,
+          email,
+          message,
+        })
+        .then(() => {
+          setState({ name: "", phone: "", email: "", message: "" });
+        })
+        .catch((err) => toast.error(err.response.data));
+      setShow(false);
+      setState({ name: "", phone: "", email: "", message: "" });
+      toast.success(
+        "Message Send Successifuly ,We will get back To you via Phone Number Provided Soon"
+      );
     }
-    if (!values.message) {
-      errors.message = "*  Message is Required";
-    }
-
-    if (!values.phone) {
-      errors.phone = "*  Phone is Required";
-    } else if (
-      !/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/i.test(
-        values.phone
-      )
-    ) {
-      errors.phone = "Invalid Phone Number";
-    }
-
-    return errors;
   };
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      name: "",
-      message: "",
-      phone: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
   return (
     <>
       <Navbar expand="lg" className="navbar fixed-top">
         <Container>
           <Navbar.Brand
-            href="/home"
+            href="/"
             style={{ fontSize: "15px", fontWeight: "bold", color: "#fff" }}
           >
             <img src={logo} alt="logo" className="logo" />
@@ -78,7 +73,7 @@ const NavbarNav = (props) => {
           <Navbar.Toggle />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link as={NavLink} to="/home" activeclassname="active">
+              <Nav.Link as={NavLink} to="/" end activeclassname="active">
                 Home
               </Nav.Link>
               <NavDropdown
@@ -117,6 +112,9 @@ const NavbarNav = (props) => {
                   Logo Design & Graphics
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link as={NavLink} to="/contact_us" activeclassname="active">
+                About
+              </Nav.Link>
               <Nav.Link as={NavLink} to="/about_us" activeclassname="active">
                 About
               </Nav.Link>
@@ -139,57 +137,33 @@ const NavbarNav = (props) => {
           <Modal.Title>Trademark Developers | Request For Service </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <Form.Group id="form-space">
               <FloatingLabel controlId="floatingInput" label="Full Name">
                 <Form.Control
                   id="name"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.name}
+                  value={name}
+                  onChange={handleInputChange}
                   name="name"
                   type="text"
                   placeholder="John Doe"
                 />
               </FloatingLabel>
-              {formik.touched.name && formik.errors.name && (
-                <span
-                  style={{
-                    marginTop: "0px",
-                    color: "red",
-                    fontSize: "14px",
-                  }}
-                >
-                  {formik.errors.name}
-                </span>
-              )}
             </Form.Group>
             <Row>
               <Col md="5">
                 <Form.Group id="form-space">
                   <FloatingLabel controlId="floatingInput" label="Phone Number">
                     <Form.Control
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.phone}
                       name="phone"
+                      value={phone}
+                      onChange={handleInputChange}
                       type="text"
                       controlId="floatingInput"
                       label="Phone Number"
                       placeholder="0712345678"
                     />
                   </FloatingLabel>
-                  {formik.touched.phone && formik.errors.phone && (
-                    <span
-                      style={{
-                        marginTop: "0px",
-                        color: "red",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {formik.errors.phone}
-                    </span>
-                  )}
                 </Form.Group>
               </Col>
               <Col md="7">
@@ -199,53 +173,29 @@ const NavbarNav = (props) => {
                     label="Email Address"
                   >
                     <Form.Control
+                      value={email}
+                      onChange={handleInputChange}
                       id="email"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.email}
                       type="email"
                       name="email"
                       placeholder="you@domain.com"
                     />
                   </FloatingLabel>
-                  {formik.touched.email && formik.errors.email && (
-                    <span
-                      style={{
-                        marginTop: "0px",
-                        color: "red",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {formik.errors.email}
-                    </span>
-                  )}
                 </Form.Group>
               </Col>
             </Row>
             <Form.Group id="form-space">
               <FloatingLabel controlId="floatingTextarea2" label="Your Request">
                 <Form.Control
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.message}
                   name="message"
+                  value={message}
+                  onChange={handleInputChange}
                   type="text"
                   as="textarea"
                   placeholder="Your Message"
                   style={{ height: "100px" }}
                 />
               </FloatingLabel>
-              {formik.touched.message && formik.errors.message && (
-                <span
-                  style={{
-                    marginTop: "0px",
-                    color: "red",
-                    fontSize: "14px",
-                  }}
-                >
-                  {formik.errors.message}
-                </span>
-              )}
             </Form.Group>
             <div className="send">
               <Button type="submit" id="send" variant="secondary">

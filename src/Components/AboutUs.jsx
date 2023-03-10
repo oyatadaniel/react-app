@@ -1,26 +1,21 @@
-import React from "react";
-import { Container, Row, Col, Breadcrumb, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import Footer from "./Footer";
 import NavbarNav from "./NavbarNav";
 import about from "../Photos/img-about.png";
 import mission from "../Photos/back5.png";
 import { Helmet } from "react-helmet";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faPhone,
-  faMobile,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  Whatsapp,
-  TelephoneFill,
-  EnvelopeAt,
-  Facebook,
-} from "react-bootstrap-icons";
+import WOW from "wowjs";
+
+import Contact from "./Contact";
 
 const TITLE = "Trademark Developers : About Us";
 const AboutUs = () => {
+  useEffect(() => {
+    new WOW.WOW({
+      live: false,
+    }).init();
+  }, []);
   return (
     <div className="home">
       <Helmet>
@@ -34,7 +29,7 @@ const AboutUs = () => {
             <Col md="10">
               <Row>
                 <Col md="6">
-                  <h3 style={{ marginTop: "30px" }}>
+                  <h3 style={{ marginTop: "30px", fontWeight: "700" }}>
                     Help Grow Your Business Through a <span>Website</span>
                   </h3>
                   <p>
@@ -59,7 +54,7 @@ const AboutUs = () => {
                     marginTop: "20px",
                   }}
                 >
-                  <img src={about} alt="" />
+                  <img className="wow bounceInRight" src={about} alt="" />
                 </Col>
               </Row>
             </Col>
@@ -71,8 +66,8 @@ const AboutUs = () => {
           <Row className="justify-content-center">
             <Col md="10">
               <Row>
-                <Col md="6">
-                  <h3>Our Mission</h3>
+                <Col md="6" className="wow bounceInLeft">
+                  <h3 style={{ fontWeight: "800" }}>Our Mission</h3>
                   <p>
                     Our mission is to provide our clients with the utmost
                     satisfaction. By doing so, we treat every client's website
@@ -81,64 +76,14 @@ const AboutUs = () => {
                   </p>
                 </Col>
                 <Col md="6">
-                  <img src={mission} alt="" />
+                  <img className="wow bounceInRight" src={mission} alt="" />
                 </Col>
               </Row>
             </Col>
           </Row>
         </Container>
       </div>
-      <div className="contact-page">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="10" style={{ textAlign: "center" }}>
-              <h3 style={{ textAlign: "center" }}>Have Some Question?</h3>
-              <span>Contact Us Here</span>
-              <Row
-                className="justify-content-center"
-                style={{ marginTop: "30px" }}
-              >
-                <Col md="6">
-                  <Row>
-                    <Col md="6" style={{ textAlign: "center" }}>
-                      <div className="cont">
-                        <h6>
-                          <TelephoneFill style={{ float: "left" }} id="icon" />
-                          079 008 4094
-                        </h6>
-                      </div>
-                    </Col>
-                    <Col md="6">
-                      <div className="cont">
-                        <h6>
-                          <Whatsapp style={{ float: "left" }} id="icon" />
-                          079 900 9560
-                        </h6>
-                      </div>
-                    </Col>
-                    <Col md="6" style={{ textAlign: "center" }}>
-                      <div className="cont">
-                        <h6>
-                          <EnvelopeAt style={{ float: "left" }} id="icon" />
-                          info@trademarkdev.co.ke
-                        </h6>
-                      </div>
-                    </Col>
-                    <Col md="6">
-                      <div className="cont">
-                        <h6>
-                          <Facebook style={{ float: "left" }} id="icon" />
-                          Trademark Dev
-                        </h6>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Contact />
       <Footer />
     </div>
   );
