@@ -62,7 +62,7 @@ const ContactUs = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3030/sendMessage", {
+      .post("http://localhost:9000/sendMessage", {
         name,
         phone,
         email,
